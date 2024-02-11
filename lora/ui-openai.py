@@ -3,7 +3,7 @@ import mlx.core as mx
 from mlx_lm import load, generate
 
 
-client = openai.OpenAI(api_key="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")
+client = openai.OpenAI(api_key="*******")
 
 def predict(message, history):
     history_openai_format = []

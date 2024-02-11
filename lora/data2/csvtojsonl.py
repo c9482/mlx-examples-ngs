@@ -9,10 +9,15 @@ df = pd.read_csv('FAQ_contents_1_31_2024.csv')
 df['response'] = df['response'].apply(lambda x: BeautifulSoup(x, 'html.parser').get_text())
 
 # Combine the 'question' and 'response' columns into a new 'text' column
-df['text'] = df['question'] + ": " + df['response']
+#df['text'] = df['question'] + ": " + df['response']
+df['text'] = "<s>[INST] " + df['question'] + " [/INST]</s>[INST] " + df['response'] + " [/INST]"
 
 # Select only the 'text' column and convert it to JSON
 json_data = df['text'].apply(lambda x: {"text": x}).to_json(orient='records', lines=True)
+# Select only the 'text' column and convert it to JSON with the desired format
+#json_data = df['text'].apply(lambda x: {"text": f'{{"text":"{x}"}}'}).to_json(orient='records', lines=True)
+
+json_data = json_data.replace('\/', '/')
 
 # Print the JSON data
 print(json_data)
