@@ -10,7 +10,8 @@ df['response'] = df['response'].apply(lambda x: BeautifulSoup(x, 'html.parser').
 
 # Combine the 'question' and 'response' columns into a new 'text' column
 #df['text'] = df['question'] + ": " + df['response']
-df['text'] = "<s>[INST] " + df['question'] + " [/INST]</s>[INST] " + df['response'] + " [/INST]"
+#df['text'] = "<s>[INST] " + df['question'] + " [/INST]</s>[INST] " + df['response'] + " [/INST]"
+df['text'] = "<s>[INST] " + df['question'] + " [/INST]</s> " + df['response']
 
 # Select only the 'text' column and convert it to JSON
 json_data = df['text'].apply(lambda x: {"text": x}).to_json(orient='records', lines=True)
