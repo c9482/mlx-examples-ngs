@@ -138,3 +138,5 @@ lora/lora_fused_model/
 lora/mlx*
 lora/mistral*
 lora/cognitive*
+lora/meta-llama*
+lora/kittn*

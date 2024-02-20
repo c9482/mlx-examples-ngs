@@ -1,9 +1,15 @@
+import csv
 import pandas as pd
-import json
+#import json
 from bs4 import BeautifulSoup
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv('FAQ_contents_1_31_2024.csv')
+df = pd.read_csv('~/Projects/mlx-examples-ngs/lora/data2/train.csv', header=0, sep=",", encoding="utf-8", names=["question", "response"])
+
+print(df)
+
+# Handle NaN values in the 'response' column
+#df['response'] = df['response'].fillna('')
 
 # Remove HTML markup from the 'response' column
 df['response'] = df['response'].apply(lambda x: BeautifulSoup(x, 'html.parser').get_text())
